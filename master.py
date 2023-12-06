@@ -580,14 +580,14 @@ train_classification_losses = {"train": [], "val": []}
 # Training loop
 for epoch in range(num_epochs):
     # Training
-    train_loss, train_dsc_od, train_dsc_oc, train_vCDR_error, train_classification_loss  = train_segmentation_epoch(segmentation_model, train_loader, segmantation_optimizer, segmantation_criterion, device)
+    train_loss, train_dsc_od, train_dsc_oc, train_vCDR_error, train_classification_loss  = train_segmentation_epoch(segmentation_model, train_loader, segmantation_optimizer, segmantation_criterion) 
     losses["train"].append(train_loss)
     dice_scores_od["train"].append(train_dsc_od)
     dice_scores_oc["train"].append(train_dsc_oc)
     vCDR_errors["train"].append(train_vCDR_error)
 
     # Validation
-    val_loss, val_dsc_od, val_dsc_oc, val_vCDR_error = validate_segmentation_epoch(segmentation_model, val_loader, segmantation_criterion, device, best_val_auc)
+    val_loss, val_dsc_od, val_dsc_oc, val_vCDR_error = validate_segmentation_epoch(segmentation_model, val_loader, segmantation_criterion,  best_val_auc)
     losses["val"].append(val_loss)
     dice_scores_od["val"].append(val_dsc_od)
     dice_scores_oc["val"].append(val_dsc_oc)
